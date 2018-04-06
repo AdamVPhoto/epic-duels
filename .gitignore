@@ -1,0 +1,12 @@
+
+.project
+.settings/org.eclipse.m2e.core.prefs
+epic-duels-client/.classpath
+epic-duels-client/.settings/org.eclipse.jdt.core.prefs
+epic-duels-client/.settings/org.eclipse.m2e.core.prefs
+epic-duels-messages/.classpath
+epic-duels-server/.classpath
+epic-duels-server/.settings/org.eclipse.jdt.core.prefs
+epic-duels-server/.settings/org.eclipse.m2e.core.prefs
+epic-duels-messages/.settings/org.eclipse.jdt.core.prefs
+epic-duels-messages/.settings/org.eclipse.m2e.core.prefs
