@@ -12,3 +12,4 @@ epic-duels-messages/.settings/org.eclipse.jdt.core.prefs
 epic-duels-messages/.settings/org.eclipse.m2e.core.prefs
 epic-duels-client/config/users.txt
 epic-duels-client/output.log
+epic-duels-server/output.log

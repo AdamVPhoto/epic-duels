@@ -1,8 +1,13 @@
 package games.epicduels.client.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
+import games.epicduels.client.connection.Connection;
 import games.epicduels.client.utils.UserUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,6 +21,8 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 
 public class UserSelectionController extends CommonController {
+    
+    private static Logger LOG = (Logger) LogManager.getLogger(UserSelectionController.class);
     
     @FXML ListView<String> userListView;
     @FXML Button removeUserButton;
@@ -86,6 +93,23 @@ public class UserSelectionController extends CommonController {
     
     @FXML
     public void selectUser() {
-        mainController.loadController(new MainMenuController(), "/fxml/MainMenuView.fxml");
+        
+        try {
+            String user = userListView.getSelectionModel().getSelectedItem();
+            
+            if (user == null) {
+                return;
+            }
+            
+            Connection connection = new Connection();
+            connection.connect("localhost", 5000, user);
+            mainController.loadController(new MainMenuController(), "/fxml/MainMenuView.fxml");
+        } catch (IOException e) {
+            LOG.error(e.getMessage(), e);
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Unable to connect to server at localhost:5000");
+            alert.show();
+        }
     }
 }
