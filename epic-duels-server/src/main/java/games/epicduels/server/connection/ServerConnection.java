@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -69,7 +70,7 @@ public class ServerConnection {
                 } else {
                     LOG.error("No user name was received");
                 }
-            } catch (EOFException ex) {
+            } catch (EOFException | SocketException ex) {
                 LOG.info(username + " has left.");
                 clientConnections.get(username).close();
                 clientConnections.remove(username);
