@@ -13,12 +13,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert.AlertType;
 
 public class UserSelectionController extends CommonController {
     
@@ -103,7 +103,10 @@ public class UserSelectionController extends CommonController {
             
             Connection connection = new Connection();
             connection.connect("localhost", 5000, user);
+            
             mainController.loadController(new MainMenuController(), "/fxml/MainMenuView.fxml");
+            mainController.setMaximized(true);
+            mainController.setFullScreen(true);
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
             Alert alert = new Alert(AlertType.ERROR);
@@ -111,5 +114,10 @@ public class UserSelectionController extends CommonController {
             alert.setContentText("Unable to connect to server at localhost:5000");
             alert.show();
         }
+    }
+
+    @Override
+    public void updateMessage(Object message) {
+        // Not used
     }
 }

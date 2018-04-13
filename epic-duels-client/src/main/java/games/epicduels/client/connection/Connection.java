@@ -1,12 +1,16 @@
 package games.epicduels.client.connection;
 
+import java.io.EOFException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
+
+import games.epicduels.client.message.MessageHandler;
 
 public class Connection {
     
@@ -25,8 +29,21 @@ public class Connection {
         sendMessage(username);
         
         new Thread(() -> {
-            
+            listenForMessages();
         }).start();
+    }
+    
+    private void listenForMessages() {
+        
+        try (ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
+            while (true) {
+                MessageHandler.getInstance().handleMessage(input.readObject());
+            }
+        } catch (EOFException ex) {
+            
+        } catch (IOException | ClassNotFoundException e) {
+            LOG.error(e.getMessage(), e);
+        }
     }
     
     private void sendMessage(Object message) {

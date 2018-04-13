@@ -1,6 +1,8 @@
 package games.epicduels.client.controllers;
 
-public abstract class CommonController {
+import games.epicduels.client.message.MessageListener;
+
+public abstract class CommonController implements MessageListener {
 
     protected MainController mainController;
 
