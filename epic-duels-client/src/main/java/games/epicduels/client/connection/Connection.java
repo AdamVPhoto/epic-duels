@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +43,7 @@ public class Connection {
             while (true) {
                 MessageHandler.getInstance().handleMessage(input.readObject());
             }
-        } catch (EOFException e) {
+        } catch (EOFException | SocketException e) {
             LOG.error(e.getMessage(), e);
             close();
             
