@@ -11,6 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import games.epicduels.client.message.MessageHandler;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Connection {
     
@@ -39,8 +42,17 @@ public class Connection {
             while (true) {
                 MessageHandler.getInstance().handleMessage(input.readObject());
             }
-        } catch (EOFException ex) {
+        } catch (EOFException e) {
+            LOG.error(e.getMessage(), e);
+            close();
             
+            Platform.runLater(() -> {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Connection to server has been lost.");
+                alert.setTitle("");
+                alert.show();
+            });
         } catch (IOException | ClassNotFoundException e) {
             LOG.error(e.getMessage(), e);
         }

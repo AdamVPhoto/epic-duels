@@ -13,3 +13,8 @@ epic-duels-messages/.settings/org.eclipse.m2e.core.prefs
 epic-duels-client/config/users.txt
 epic-duels-client/output.log
 epic-duels-server/output.log
+epic-duels-test/.classpath
+epic-duels-test/.settings/org.eclipse.jdt.core.prefs
+epic-duels-test/.settings/org.eclipse.m2e.core.prefs
+epic-duels-test/config/users.txt
+epic-duels-test/output.log
