@@ -7,6 +7,8 @@ import java.io.ObjectOutputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import games.epicduels.server.message.MessageHandler;
+
 public class ClientConnection {
     
     private static Logger LOG = (Logger) LogManager.getLogger(ClientConnection.class);
@@ -17,10 +19,10 @@ public class ClientConnection {
         this.output = output;
     }
 
-    public void listenForMessages(ObjectInputStream input) throws ClassNotFoundException, IOException {
+    public void listenForMessages(ObjectInputStream input, MessageHandler messageHandler) throws ClassNotFoundException, IOException {
 
         while (true) {
-            input.readObject();
+            messageHandler.handleMessage(input.readObject());
         }
     }
     

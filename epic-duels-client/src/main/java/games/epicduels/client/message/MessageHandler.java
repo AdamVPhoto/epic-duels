@@ -3,6 +3,7 @@ package games.epicduels.client.message;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.epicduels.client.connection.Connection;
 import javafx.application.Platform;
 
 public class MessageHandler {
@@ -14,11 +15,16 @@ public class MessageHandler {
     }
     
     private List<MessageListener> messageListeners;
+    private Connection connection;
 
     private MessageHandler() {
         messageListeners = new ArrayList<>();
     }
     
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
     public void handleMessage(Object message) {
         Platform.runLater(() -> {
             messageListeners.forEach((messageListener) -> {
@@ -29,5 +35,9 @@ public class MessageHandler {
     
     public void addMessageListener(MessageListener messageListener) {
         messageListeners.add(messageListener);
+    }
+    
+    public void sendMessage(Object message) {
+        connection.sendMessage(message);
     }
 }

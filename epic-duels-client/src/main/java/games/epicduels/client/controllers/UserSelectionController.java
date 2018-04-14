@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import games.epicduels.client.connection.Connection;
+import games.epicduels.client.message.MessageHandler;
 import games.epicduels.client.utils.UserUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -102,6 +103,7 @@ public class UserSelectionController extends CommonController {
             }
             
             Connection connection = new Connection();
+            MessageHandler.getInstance().setConnection(connection);
             connection.connect("localhost", 5000, user);
             
             mainController.loadController(new MainMenuController(), "/fxml/MainMenuView.fxml");

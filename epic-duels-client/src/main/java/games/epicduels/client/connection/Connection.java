@@ -59,7 +59,7 @@ public class Connection {
         }
     }
     
-    private void sendMessage(Object message) {
+    public void sendMessage(Object message) {
         
         try {
             output.reset();

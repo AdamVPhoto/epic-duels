@@ -18,6 +18,7 @@ import org.apache.logging.log4j.core.Logger;
 import games.epicduels.client.connection.Connection;
 import games.epicduels.client.controllers.MainController;
 import games.epicduels.client.controllers.MainMenuController;
+import games.epicduels.client.message.MessageHandler;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -100,6 +101,7 @@ public class AddUsersTest extends Application {
     public void start(Stage stage) throws Exception {
         
         Connection connection = new Connection();
+        MessageHandler.getInstance().setConnection(connection);
         boolean success = false;
         
         while (!success) {

@@ -16,6 +16,7 @@ import org.apache.logging.log4j.core.Logger;
 
 import games.epicduels.message.UsersStatus;
 import games.epicduels.server.listener.EventManager;
+import games.epicduels.server.message.MessageHandler;
 
 public class ServerConnection {
     
@@ -66,7 +67,7 @@ public class ServerConnection {
                     status.setUsers(Arrays.asList(clientConnections.keySet().toArray(new String[clientConnections.size()])));
                     sendMessageToAllClients(status);
                     
-                    clientConnection.listenForMessages(input);
+                    clientConnection.listenForMessages(input, new MessageHandler(this, username));
                 } else {
                     LOG.error("No user name was received");
                 }
@@ -87,7 +88,7 @@ public class ServerConnection {
         }).start();
     }
     
-    private void sendMessageToAllClients(Object message) {
+    public void sendMessageToAllClients(Object message) {
         
         clientConnections.forEach((key, clientConnection) -> {
             clientConnection.sendMessage(message);
