@@ -21,8 +21,8 @@ public class MainController {
     
     private Stage stage;
 
-    @FXML MenuBar menuBar;
-    @FXML AnchorPane mainPane;
+    @FXML private MenuBar menuBar;
+    @FXML private AnchorPane mainPane;
 
     public void init(Stage stage) throws FileNotFoundException, IOException {
         this.stage = stage;

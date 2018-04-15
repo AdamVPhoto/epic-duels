@@ -25,9 +25,9 @@ public class UserSelectionController extends CommonController {
     
     private static Logger LOG = (Logger) LogManager.getLogger(UserSelectionController.class);
     
-    @FXML ListView<String> userListView;
-    @FXML Button removeUserButton;
-    @FXML Button selectUserButton;
+    @FXML private ListView<String> userListView;
+    @FXML private Button removeUserButton;
+    @FXML private Button selectUserButton;
 
     @Override
     public void init() {

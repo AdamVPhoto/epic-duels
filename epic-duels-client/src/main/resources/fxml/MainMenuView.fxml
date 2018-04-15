@@ -19,15 +19,15 @@
                <children>
                   <HBox spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Create Game" />
-                        <Button mnemonicParsing="false" text="Join Game" />
+                        <Button mnemonicParsing="false" onAction="#createGame" text="Create Game" />
+                        <Button disable="true" mnemonicParsing="false" text="Join Game" />
                         <Button mnemonicParsing="false" text="Load Game" />
                      </children>
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <ListView VBox.vgrow="ALWAYS" />
+                  <ListView fx:id="gamesListView" VBox.vgrow="ALWAYS" />
                   <TextArea fx:id="textMessagesArea" VBox.vgrow="ALWAYS" />
                </children>
                <padding>

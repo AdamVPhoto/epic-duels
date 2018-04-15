@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 
 public class ServerController implements EventListener {
     
-    @FXML TextArea statusText;
+    @FXML private TextArea statusText;
 
     @Override
     public void addEvent(String event) {
