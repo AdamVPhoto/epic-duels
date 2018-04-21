@@ -20,7 +20,7 @@
                   <HBox spacing="20.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#createGame" text="Create Game" />
-                        <Button disable="true" mnemonicParsing="false" text="Join Game" />
+                        <Button fx:id="joinGameButton" disable="true" mnemonicParsing="false" onAction="#joinGame" text="Join Game" />
                         <Button mnemonicParsing="false" text="Load Game" />
                      </children>
                      <VBox.margin>

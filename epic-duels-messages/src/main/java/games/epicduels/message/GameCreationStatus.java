@@ -4,20 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import games.epicduels.message.data.Team;
+import games.epicduels.message.data.TeamSlot;
 
 @SuppressWarnings("serial")
-public class CreateGameMessage implements Serializable {
+public class GameCreationStatus implements Serializable {
 
-    private String gameName;
     private List<Team> teams;
-
-    public String getGameName() {
-        return gameName;
-    }
-
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
+    private List<TeamSlot> teamSlots;
 
     public List<Team> getTeams() {
         return teams;
@@ -25,5 +18,13 @@ public class CreateGameMessage implements Serializable {
 
     public void setTeams(List<Team> teams) {
         this.teams = teams;
+    }
+
+    public List<TeamSlot> getTeamSlots() {
+        return teamSlots;
+    }
+
+    public void setTeamSlots(List<TeamSlot> teamSlots) {
+        this.teamSlots = teamSlots;
     }
 }

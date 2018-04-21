@@ -67,7 +67,7 @@ public class ServerConnection {
                     status.setUsers(Arrays.asList(clientConnections.keySet().toArray(new String[clientConnections.size()])));
                     sendMessageToAllClients(status);
                     
-                    clientConnection.listenForMessages(input, new MessageHandler(this, username));
+                    clientConnection.listenForMessages(input, new MessageHandler(this, username, clientConnection));
                 } else {
                     LOG.error("No user name was received");
                 }

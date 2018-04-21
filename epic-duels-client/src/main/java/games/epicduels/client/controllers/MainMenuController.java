@@ -3,11 +3,15 @@ package games.epicduels.client.controllers;
 import java.util.Optional;
 
 import games.epicduels.client.message.MessageHandler;
+import games.epicduels.client.utils.GameDataUtil;
 import games.epicduels.message.CreateGameMessage;
 import games.epicduels.message.GamesStatus;
+import games.epicduels.message.JoinGameMessage;
 import games.epicduels.message.SendTextMessage;
 import games.epicduels.message.TextMessageResponse;
 import games.epicduels.message.UsersStatus;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -22,6 +26,7 @@ public class MainMenuController extends CommonController {
     @FXML private TextField textMessageField;
     @FXML private TextArea textMessagesArea;
     @FXML private ListView<String> gamesListView;
+    @FXML private Button joinGameButton;
     
     private MessageHandler messageHandler;
     
@@ -32,6 +37,15 @@ public class MainMenuController extends CommonController {
     @Override
     public void init() {
         
+        gamesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue != null) {
+                    joinGameButton.setDisable(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -69,9 +83,20 @@ public class MainMenuController extends CommonController {
         
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(gameName ->  {
+            mainController.loadController(new GameCreationController(), "/fxml/GameCreationView.fxml");
             CreateGameMessage createGameMessage = new CreateGameMessage();
             createGameMessage.setGameName(gameName);
+            createGameMessage.setTeams(GameDataUtil.loadTeams());
             messageHandler.sendMessage(createGameMessage);
         });
+    }
+    
+    @FXML
+    public void joinGame() {
+        
+        mainController.loadController(new GameCreationController(), "/fxml/GameCreationView.fxml");
+        JoinGameMessage joinGameMessage = new JoinGameMessage();
+        joinGameMessage.setGameName(gamesListView.getSelectionModel().getSelectedItem());
+        messageHandler.sendMessage(joinGameMessage);
     }
 }

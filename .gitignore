@@ -10,11 +10,15 @@ epic-duels-server/.settings/org.eclipse.jdt.core.prefs
 epic-duels-server/.settings/org.eclipse.m2e.core.prefs
 epic-duels-messages/.settings/org.eclipse.jdt.core.prefs
 epic-duels-messages/.settings/org.eclipse.m2e.core.prefs
-epic-duels-client/config/users.txt
+epic-duels-client/config/
+epic-duels-client/images/
 epic-duels-client/output.log
 epic-duels-server/output.log
 epic-duels-test/.classpath
 epic-duels-test/.settings/org.eclipse.jdt.core.prefs
 epic-duels-test/.settings/org.eclipse.m2e.core.prefs
-epic-duels-test/config/users.txt
+epic-duels-test/config/
+epic-duels-test/images/
 epic-duels-test/output.log
+epic-duels-client/Teams.properties
+epic-duels-test/Teams.properties

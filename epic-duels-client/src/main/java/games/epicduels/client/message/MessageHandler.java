@@ -16,6 +16,7 @@ public class MessageHandler {
     
     private List<MessageListener> messageListeners;
     private Connection connection;
+    private String userName;
 
     private MessageHandler() {
         messageListeners = new ArrayList<>();
@@ -23,6 +24,14 @@ public class MessageHandler {
     
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public void handleMessage(Object message) {

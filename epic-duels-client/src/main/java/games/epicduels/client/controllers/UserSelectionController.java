@@ -104,6 +104,7 @@ public class UserSelectionController extends CommonController {
             
             Connection connection = new Connection();
             MessageHandler.getInstance().setConnection(connection);
+            MessageHandler.getInstance().setUserName(user);
             connection.connect("localhost", 5000, user);
             
             mainController.loadController(new MainMenuController(), "/fxml/MainMenuView.fxml");
